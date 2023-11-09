@@ -1,0 +1,4 @@
+button,
+.button {
+  user-select: none !important;
+}

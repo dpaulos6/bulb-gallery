@@ -60,7 +60,7 @@ export const InvitationModal = ({ setIsOpen }) => (
               <div className="flex flex-wrap -m-2">
                 <div className="w-full sm:w-4/5 p-2 mx-auto">
                   <input
-                    className="px-4 py-4 w-full text-gray-500 font-medium text-center placeholder-gray-500 outline-none border bg-gray-300 border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
+                    className="px-4 py-4 w-full text-gray-500 font-medium text-center placeholder-gray-500 outline-none border bg-gray-300 border-gray-300 rounded-lg"
                     id="newsletterInput3-1"
                     type="text"
                     placeholder="Your email address"
@@ -68,7 +68,7 @@ export const InvitationModal = ({ setIsOpen }) => (
                 </div>
                 <div className="w-full sm:w-4/5 p-2 mt-4 mx-auto">
                   <button
-                    className="py-4 px-6 w-full text-white font-semibold rounded-xl shadow-4xl focus:ring focus:ring-indigo-300 bg-customPrimary hover:bg-[#7274f3] transition ease-in-out duration-200"
+                    className="py-4 px-6 w-full text-white font-semibold rounded-xl shadow-4xl bg-customPrimary hover:bg-customHover transition ease-in-out duration-200"
                     type="button"
                   >
                     Join Now
