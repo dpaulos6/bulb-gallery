@@ -27,19 +27,20 @@ export const ScrollUpButton = () => {
     <>
       {isVisible && (
         <div
+          id="toTop"
           className="w-12 h-12 fixed bottom-6 right-6 custom-border-gray rounded-xl  bg-customDarkBg2 hover:bg-customDarkBg3 cursor-pointer flex justify-center items-center transition z-50"
           onClick={scrollToTop}
         >
           <svg
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            width="35px"
-            height="35px"
+            width="25px"
+            height="25px"
             viewBox="0 0 20 20"
           >
             <path
               d="M4.16732 12.5L10.0007 6.66667L15.834 12.5"
-              stroke="rgb(99, 102, 241)"
+              stroke="rgb(57, 167, 255)"
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"

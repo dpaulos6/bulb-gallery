@@ -1,12 +1,17 @@
 import { FacebookIcon } from "../assets/icons/FacebookIcon";
 import { InstagramIcon } from "../assets/icons/InstagramIcon";
-import { TailcastLogo } from "../assets/logos/TailcastLogo";
+import { BulbLogo } from "../assets/logos/BulbLogo";
 import { TwitterIcon } from "../assets/icons/TwitterIcon";
 
 const footerData = [
   {
     title: "Products",
-    items: ["Services", "About Us", "News and Stories", "Roadmap"],
+    items: [
+      "Services", 
+      "About Us", 
+      "News and Stories", 
+      "Roadmap"
+    ],
   },
   {
     title: "Important Links",
@@ -21,7 +26,12 @@ const footerData = [
   },
   {
     title: "Company",
-    items: ["About Us", "Jobs", "Press", "Contact Us"],
+    items: [
+      "About Us", 
+      "Jobs", 
+      "Press", 
+      "Contact Us"
+    ],
   },
 ];
 
@@ -34,10 +44,10 @@ export const Footer = () => {
             <div className="w-full lg:w-1/3 mb-16 lg:mb-0">
               <div className="flex justify-center lg:justify-start items-center grow basis-0">
                 <div className="text-white mr-2 text-6xl">
-                  <TailcastLogo />
+                  <BulbLogo />
                 </div>
                 <div className="text-white font-['Inter'] font-bold text-xl">
-                  Tailcast
+                  Bulb
                 </div>
               </div>
               <p className="mb-10 mt-4 sm:w-[22rem] lg:w-[20rem] xl:w-[24rem] text-gray-400 leading-loose text-center lg:text-left mx-auto lg:mx-0">
