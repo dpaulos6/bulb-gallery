@@ -1,0 +1,7 @@
+.border-transition{
+  transition: border 150ms ease-in-out;
+}
+
+.bg-transition{
+  transition: background-color 150ms ease-in-out;
+}

@@ -1,0 +1,13 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Signup } from "../components/Signup.jsx";
+
+import "../styles/Theme.css";
+import "../styles/Diagonals.css";
+import "../styles/Conditionals.css";
+import "../styles/Global.css";
+---
+
+<Layout title="Bulb - Create account">
+  <Signup client:load/>
+</Layout>

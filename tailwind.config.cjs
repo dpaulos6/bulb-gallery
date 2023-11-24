@@ -4,9 +4,23 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        primary: {
+          '50': '#f0fdf0',
+          '100': '#dbfddc',
+          '200': '#baf8bc',
+          '300': '#84f188',
+          '400': '#47e14e',
+          '500': '#20d529',
+          '600': '#13a61a',
+          '700': '#128318',
+          '800': '#14671a',
+          '900': '#135418',
+          '950': '#042f08',
+      },
         customPrimary: "rgb(32, 213, 41)",
         customSecondary: "rgb(19, 195, 28)",
         customHover: "rgb(75, 245, 65)",
+        customPrimaryBorder: "rgba(32, 213, 41, 0.5)",
         customDarkBg1: "rgb(31, 32, 35)",
         customDarkBg2: "rgb(38, 39, 43)",
         customDarkBg3: "rgb(48, 49, 54)",
