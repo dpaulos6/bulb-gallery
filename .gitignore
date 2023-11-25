@@ -21,3 +21,5 @@ pnpm-debug.log*
 
 # Run Scripts
 runscripts.txt
+
+.vercel

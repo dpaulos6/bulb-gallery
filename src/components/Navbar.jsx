@@ -20,8 +20,8 @@ export const Navbar = () => {
           transition={{ duration: 0.3 }}
           exit={{ opacity: 0 }}
         >
-          <a className="navbar-link" href="#home" aria-label="Home">
-            <div className="flex justify-start items-center grow basis-0">
+          <a className="navbar-link" href="/" aria-label="Home">
+            <div className="flex justify-start items-center grow basis-0 cursor-pointer hover:scale-105 duration-150">
               <div className="text-white mr-2 text-6xl">
                 <BulbLogo />
               </div>
