@@ -58,7 +58,28 @@ html {
 /* Navbar */
 
 .navbar-link {
-  @apply text-white lg:text-base text-2xl  leading-6 mr-4 ml-4   2xl:mr-6 2xl:ml-6 cursor-pointer font-normal lg:font-medium hover:scale-110 transition duration-300 h-full pt-2;
+  transition: all 150ms ease-in-out;
+  @apply text-white lg:text-base text-2xl leading-6 mr-4 ml-4 2xl:mr-6 2xl:ml-6 cursor-pointer font-normal lg:font-medium h-full pt-2;
+}
+
+.navbar-link {
+  position: relative;
+}
+
+.navbar-link::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  width: 75%;
+  border-bottom: 4px solid transparent;
+  border-radius: 10px;
+  transition: border-color 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.navbar-link:hover::after {
+  @apply border-primary-500
 }
 
 /* Preventing FOUC */

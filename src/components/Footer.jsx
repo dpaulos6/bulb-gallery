@@ -41,7 +41,7 @@ export const Footer = () => {
           <div className="flex flex-wrap">
             <div className="w-full flex flex-row mb-16 lg:mb-0">
               <div className="flex justify-start items-center grow basis-0">
-                <a className="navbar-link" href="#home" aria-label="Home">
+                <a className="" href="#home" aria-label="Home">
                   <div className="flex items-center grow basis-0 cursor-pointer hover:scale-105 duration-150">
                     <div className="text-white mr-2 text-6xl">
                       <BulbLogo />
@@ -54,14 +54,14 @@ export const Footer = () => {
               </div>
               <div className="flex w-36 justify-end lg:mx-0">
                 <a
-                  className="inline-block w-fit h-fit mr-2 p-2 bg-customDarkBg2 custom-border-gray hover:bg-primary-800  duration-150 hover:border-primary-500 rounded-xl"
+                  className="inline-block w-fit h-fit mr-2 p-2 bg-customDarkBg2 custom-border-gray hover-primary rounded-xl"
                   target="_blank"
                   href="https://instagram.com/dpaulos6"
                 >
                   <FaInstagram className="text-white text-2xl" />
                 </a>
                 <a
-                  className="inline-block w-fit h-fit mr-2 p-2 bg-customDarkBg2 custom-border-gray hover:bg-primary-800  duration-150 hover:border-primary-500 rounded-xl"
+                  className="inline-block w-fit h-fit mr-2 p-2 bg-customDarkBg2 custom-border-gray hover-primary rounded-xl"
                   target="_blank"
                   href="https://github.com/dpaulos6"
                 >

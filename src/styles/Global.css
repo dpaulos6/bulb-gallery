@@ -1,3 +1,11 @@
+.hover-primary{
+  transition: all 200ms ease-in-out;
+}
+
+.hover-primary:hover {
+  @apply bg-primary-800 border-primary-500
+}
+
 .border-transition{
   transition: border 150ms ease-in-out;
 }

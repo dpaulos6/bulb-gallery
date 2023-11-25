@@ -54,7 +54,7 @@ export const Signin = () => {
               <button
                 className="text-white w-full justify-center custom-border-gray cursor-pointer rounded-xl focus:outline-none bg-primary-600 hover:bg-primary-500 bg-transition px-6 pt-2 pb-2 text-md flex"
                 type="button"
-                onClick={submitForm}
+                // onClick={submitForm}
               >
                 Login
               </button>
