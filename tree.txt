@@ -1,0 +1,18 @@
+Folder PATH listing for volume Windows
+Volume serial number is 26CF-E5A6
+C:.
++---.vercel
++---dist
++---node_modules
++---public
++---src
+    +---api
+    +---assets
+    ¦   +---images
+    ¦   ¦   +---gallery
+    ¦   +---logos
+    +---components
+    +---layouts
+    +---pages
+    +---scripts
+    +---styles

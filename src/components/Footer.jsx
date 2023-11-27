@@ -1,5 +1,5 @@
 import { BulbLogo } from "../assets/logos/BulbLogo";
-import { FaInstagram, FaGithub } from "react-icons/fa6";
+import { FaInstagram, FaGithub } from "react-icons/fa6/index.js";
 
 const footerData = [
   {
@@ -39,20 +39,25 @@ export const Footer = () => {
       <div className="pt-10  lg:pt-20 lg:pb-12 bg-customDarkBg1 radius-for-skewed ">
         <div className="container mx-auto px-4 w-4/5 md:w-11/12 lg:w-10/12 xl:w-4/5 2xl:w-2/3">
           <div className="flex flex-wrap">
-            <div className="w-full flex flex-row mb-16 lg:mb-0">
-              <div className="flex justify-start items-center grow basis-0">
+            <div className="w-full flex flex-row justify-between mb-16 lg:mb-0">
+              <div className="flex items-center basis-0">
                 <a className="" href="#home" aria-label="Home">
-                  <div className="flex items-center grow basis-0 cursor-pointer hover:scale-105 duration-150">
+                  <div className="flex items-center grow basis-0 cursor-pointer">
                     <div className="text-white mr-2 text-6xl">
                       <BulbLogo />
                     </div>
-                    <div className="text-white font-['Inter'] font-bold text-xl">
+                    <div className="text-white font-['Inter'] font-bold text-3xl">
                       Bulb
                     </div>
                   </div>
                 </a>
               </div>
-              <div className="flex w-36 justify-end lg:mx-0">
+              <div className="flex w-auto lg:mx-0">
+                <p className="inline-block w-fit h-fit p-2 text-gray-200 text-lg">
+                  Your personal photography storage!
+                </p>
+              </div>
+              <div className="flex w-36 lg:mx-0">
                 <a
                   className="inline-block w-fit h-fit mr-2 p-2 bg-customDarkBg2 custom-border-gray hover-primary rounded-xl"
                   target="_blank"

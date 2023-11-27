@@ -21,11 +21,11 @@ export const Navbar = () => {
           exit={{ opacity: 0 }}
         >
           <a className="navbar-link" href="/" aria-label="Home">
-            <div className="flex justify-start items-center grow basis-0 cursor-pointer hover:scale-105 duration-150">
+            <div className="flex justify-start items-center grow basis-0 cursor-pointer">
               <div className="text-white mr-2 text-6xl">
                 <BulbLogo />
               </div>
-              <div className="text-white font-['Inter'] font-bold text-xl">
+              <div className="text-white font-['Inter'] font-bold text-3xl">
                 Bulb
               </div>
             </div>
