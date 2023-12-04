@@ -26,6 +26,22 @@ export const Signin = () => {
     }
   }
 
+  const apiUrl = ''; // Replace with your API endpoint
+
+  fetch(apiUrl)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('API Response:', data);
+    })
+    .catch(error => {
+      console.error('Error making API request:', error.message);
+    });
+
   return (
     <section className="flex w-screen h-screen">
       <motion.div

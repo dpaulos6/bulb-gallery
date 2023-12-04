@@ -1,21 +1,27 @@
 {
   "name": "@example/basics",
-  "type": "module",
+  "type": "commonjs",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "start": "astro dev",
+    "start": "node server.js",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro",
-    "generate-component": "node src/scripts/generateComponent.js"
+    "astro": "astro dev",
+    "generate-component": "node src/scripts/generateComponent.js",
+    "express": "node server.js"
+  },
+  "engines": {
+    "node": "20.x"
   },
   "dependencies": {
     "@astrojs/tailwind": "^3.1.1",
     "@fontsource/inter": "^4.5.15",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "astro": "^2.2.0",
+    "concurrently": "^8.2.2",
+    "express": "^4.18.2",
     "font-awesome": "^4.7.0",
     "fontawesome": "^5.6.3",
     "framer-motion": "^10.11.2",
