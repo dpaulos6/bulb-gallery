@@ -1,4 +1,5 @@
 /* Typography */
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 
 .custom-block-title {
   @apply text-white text-3xl font-bold tracking-normal;
@@ -59,7 +60,7 @@ html {
 
 .navbar-link {
   transition: all 150ms ease-in-out;
-  @apply text-white lg:text-base text-2xl leading-6 mr-4 ml-4 2xl:mr-6 2xl:ml-6 cursor-pointer font-normal lg:font-medium h-full pt-2;
+  @apply text-white lg:text-base text-2xl leading-6 mr-5 ml-5 cursor-pointer font-normal lg:font-medium h-full pt-2;
 }
 
 .navbar-link {

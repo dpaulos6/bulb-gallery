@@ -1,47 +1,8 @@
+import React, { useState, useEffect } from 'react';
 import { motion } from "framer-motion";
 import { BulbLogo } from "../assets/logos/BulbLogo";
 
 export const Signin = () => {
-  async function submitForm() {
-    const form = document.getElementById('loginForm');
-    const formData = new FormData(form);
-
-    try {
-      const response = await fetch('/api/testing', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(Object.fromEntries(formData)),
-      });
-
-      if (response.ok) {
-        const result = await response.json();
-        console.log('Serverless function response:', result);
-      } else {
-        console.error('Failed to call serverless function:', response.statusText);
-      }
-    } catch (error) {
-      console.error('Error calling serverless function:', error.message);
-    }
-  }
-
-  const apiUrl = ''; // Replace with your API endpoint
-
-  fetch(apiUrl)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log('API Response:', data);
-    })
-    .catch(error => {
-      console.error('Error making API request:', error.message);
-    });
-
   return (
     <section className="flex w-screen h-screen">
       <motion.div
