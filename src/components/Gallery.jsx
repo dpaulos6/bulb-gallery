@@ -44,44 +44,35 @@ export const Gallery = () => {
     <section className="w-full flex justify-center sm:px-2 md:px-6 lg:px-10 xl:px-16 pt-10 mb-16 lg:mb-32 bg-customDarkBg2 relative">
       <div className="w-full transition-all ease-in-out duration-300 grid grid-flow-row-dense grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 grid-auto-fill gap-8 lg:gap-5 xl:gap-10 px-6 xl:px-0 items-center">
         {galleryData.map((gallery, index) => (
-          <motion.div
-            className=""
+          <div
+            className="photo-card w-full custom-border-gray-darker cursor-zoom-in rounded-xl bg-customDarkBg3 flex flex-col"
             key={uuidv4()}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.3 }}
-            exit={{ opacity: 0 }}
+            onMouseEnter={() => handleMouseEnter(index)}
+            onMouseLeave={handleMouseLeave}
+            style={{
+              backgroundImage: `url(${dashboard})`,
+              backgroundSize: "cover",
+              aspectRatio: "16/9",
+              width: "100%",
+              height1: "100%",
+            }}
           >
-            <div
-              className="photo-card w-full custom-border-gray-darker cursor-zoom-in rounded-xl bg-customDarkBg3 flex flex-col"
-              key={uuidv4()}
-              onMouseEnter={() => handleMouseEnter(index)}
-              onMouseLeave={handleMouseLeave}
-              style={{
-                backgroundImage: `url(${dashboard})`,
-                backgroundSize: "cover",
-                aspectRatio: "16/9",
-                width: "100%",
-                height1: "100%",
-              }}
-            >
-              <div className="photo-options h-full flex mb-auto gradientback-invert rounded-xl p-4 sm:p-2 md:p-4 lg:p-4 xl:p-4 opacity-0 duration-300" style={{ position: "relative" }}>
-                <div className="flex w-full justify-start h-max">
-                  {/* Add your content for photo options here */}
-                </div>
+            <div className="photo-options h-full flex mb-auto gradientback-invert rounded-xl p-4 sm:p-2 md:p-4 lg:p-4 xl:p-4 opacity-0 duration-300" style={{ position: "relative" }}>
+              <div className="flex w-full justify-start h-max">
+                {/* Add your content for photo options here */}
               </div>
-              <div className="photo-user h-full flex mt-auto gradientback rounded-xl p-4 sm:p-2 md:p-4 lg:p-4 xl:p-4 opacity-0 duration-300" style={{ position: "relative" }}>
-                <div className="flex w-full justify-start h-max">
-                  <img src={gallery.image} alt="" width="7.5%" className="rounded-full"/>
-                  <div className="flex flex-col ml-4 my-auto">
-                    <div className="custom-content-text-white font-medium">
-                      {gallery.user}
-                    </div>
+            </div>
+            <div className="photo-user h-full flex mt-auto gradientback rounded-xl p-4 sm:p-2 md:p-4 lg:p-4 xl:p-4 opacity-0 duration-300" style={{ position: "relative" }}>
+              <div className="flex w-full justify-start h-max">
+                <img src={gallery.image} alt="" width="7.5%" className="rounded-full"/>
+                <div className="flex flex-col ml-4 my-auto">
+                  <div className="custom-content-text-white font-medium">
+                    {gallery.user}
                   </div>
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
     </section>
