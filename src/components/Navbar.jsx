@@ -42,7 +42,7 @@ export const Navbar = () => {
   }
   
   function validateLogin(){
-    return 1+2 == 2
+    return 1+1 == 2
   }
 
   return (
@@ -95,77 +95,16 @@ export const Navbar = () => {
           {(() => { 
             if(validateLogin()) { 
               return (
-                <Popover className="relative h-full">
-                  {({ open }) => (
-                    <>
-                      <Popover.Button 
-                        className={classNames(
-                          open ? 'bg-primary-800 border-primary-500' : '',
-                          "text-white custom-border-gray hover-primary rounded-xl bg-customDarkBg2 hover:bg-customDarkBg3 p-3 text-md flex focus:outline-none focus-within:outline-none"
-                        )}
-                      >
-                        <FaUser
-                          className={classNames(
-                            open ? 'text-white' : '',
-                            'h-auto w-5 group-hover:text-gray-500'
-                          )}
-                          aria-hidden="true"
-                        />
-                      </Popover.Button>
-                      <Transition
-                        as={Fragment}
-                        enter="transition ease-out duration-200"
-                        enterFrom="opacity-0 translate-y-1"
-                        enterTo="opacity-100 translate-y-0"
-                        leave="transition ease-in duration-150"
-                        leaveFrom="opacity-100 translate-y-0"
-                        leaveTo="opacity-0 translate-y-1"
-                      >
-                        <Popover.Panel className="absolute left-1/2 z-10 mt-3 w-fit max-w-xs -translate-x-1/2 transform px-2 sm:px-0">
-                          <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
-                            <div className="relative grid bg-customDarkBg3 gap-6 px-5 py-6 sm:p-8">
-                              {/* <h3 className="text-base text-center font-medium text-gray-700">My Projects</h3> */}
-                              {userOptions.map((item) => (
-                                <a
-                                  key={uuidv4()}
-                                  href={item.href}
-                                  className="-m-3 flex items-start rounded-lg p-3 hover:bg-customDarkBg3Hover"
-                                >
-                                  <div className="w-full">
-                                    <p 
-                                      className="text-base mr-4 w-full font-medium text-white"
-                                      // style={{
-                                      //   border: '1px solid',
-                                      //   borderColor: getRandomColor()
-                                      // }}
-                                    >
-                                      {item.label}
-                                    </p>
-                                  </div>
-                                </a>
-                              ))}
-                            </div>
-                            {/* <div className="bg-gray-50 px-5 py-5 sm:px-8 sm:py-8">
-                              <div>
-                                <h3 className="text-base font-medium text-gray-500">Social Medias</h3>
-                                <ul className="mt-4 space-y-1">
-                                  <a href="" className="font-medium">
-                                    <li key="" className="truncate text-base">
-                                      <div className="inline-flex text-gray-700 hover:text-gray-900">
-                                        <FaInstagram className="my-auto"/>
-                                        <span className="mx-2 my-0">something</span>
-                                      </div>
-                                    </li>
-                                  </a>
-                                </ul>
-                              </div>
-                            </div> */}
-                          </div>
-                        </Popover.Panel>
-                      </Transition>
-                    </>
-                  )}
-                </Popover>
+                <a
+                  href="/profile"
+                  target="_self"
+                  className="text-white custom-border-gray hover-primary rounded-xl bg-customDarkBg2 hover:bg-customDarkBg3 p-3 text-md flex focus:outline-none focus-within:outline-none"
+                >
+                  <FaUser
+                    className='h-auto w-5 group-hover:text-gray-500'
+                    aria-hidden="true"
+                  />
+                </a>
               )
             } else {
               return (
@@ -182,7 +121,7 @@ export const Navbar = () => {
                     className="text-white custom-border-gray hover-primary rounded-xl bg-customDarkBg2 hover:bg-customDarkBg3  border-gray-700 px-6 pt-2 pb-2 text-md flex"
                     onClick={() => loginWithRedirect()}
                   >
-                    Log In
+                    Log in
                   </button>
                 </div>
               )
@@ -222,13 +161,12 @@ export const Navbar = () => {
                   {label}
                 </a>
               ))}
-              <a
-                className="text-white custom-border-gray rounded-xl bg-customDarkBg2 hover:bg-customDarkBg3  border-gray-700 pl-6 pr-8 pt-2 pb-2 text-sm flex"
-                href=""
-                target="_blank"
+              <button 
+                className="text-white custom-border-gray hover-primary rounded-xl bg-customDarkBg2 hover:bg-customDarkBg3  border-gray-700 px-6 pt-2 pb-2 text-md flex"
+                onClick={() => loginWithRedirect()}
               >
-                Login
-              </a>
+                Log in
+              </button>
             </div>
           </motion.div>
         )}

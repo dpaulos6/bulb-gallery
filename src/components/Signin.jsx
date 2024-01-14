@@ -14,11 +14,11 @@ export const Signin = () => {
       >
         <a className="flex mb-10 -mt-20" href="/">
           <div className="flex justify-center items-center grow basis-0 cursor-pointer duration-150">
-            <div className="text-white mr-4 scale-150 text-6xl">
+            {/* <div className="text-white mr-4 scale-150 text-6xl">
               <BulbLogo />
-            </div>
-            <div className="text-white font-['Inter'] font-bold text-5xl">
-              Bulb
+            </div> */}
+            <div className="text-white font-['Righteous'] text-4xl">
+              bulb
             </div>
           </div>
         </a>

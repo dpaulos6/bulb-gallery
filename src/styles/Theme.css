@@ -1,5 +1,8 @@
 /* Typography */
-@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+@font-face {
+  font-family: Righteous;
+  src: url(fonts/Righteous-Regular.ttf) format("truetype");
+}
 
 .custom-block-title {
   @apply text-white text-3xl font-bold tracking-normal;
@@ -81,9 +84,4 @@ html {
 
 .navbar-link:hover::after {
   @apply border-primary-500
-}
-
-/* Preventing FOUC */
-@font-face {
-  font-display: var(--fontsource-Inter-font-display, optional);
 }
