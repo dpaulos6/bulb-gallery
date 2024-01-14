@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-import { v4 as uuidv4 } from 'uuid';
-
 import testimonial1 from "../assets/images/testimonial1.png";
 import testimonial2 from "../assets/images/testimonial2.png";
 import testimonial3 from "../assets/images/testimonial3.png";
@@ -46,7 +44,7 @@ export const Gallery = () => {
         {galleryData.map((gallery, index) => (
           <div
             className="photo-card w-full custom-border-gray-darker cursor-zoom-in rounded-xl bg-customDarkBg3 flex flex-col"
-            key={uuidv4()}
+            key={() => index}
             onMouseEnter={() => handleMouseEnter(index)}
             onMouseLeave={handleMouseLeave}
             style={{
