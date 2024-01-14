@@ -1,5 +1,5 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 
 const componentName = process.argv[2];
 const targetDirectory = process.argv[3] || 'src/components';

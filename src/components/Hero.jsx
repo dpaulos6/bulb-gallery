@@ -36,7 +36,7 @@ export const Hero = () => {
           transition={{ duration: 0.5, delay: 0.1 }}
         >
           <div className="text-customGrayText text-sm lg:text-base xl:text-lg sm:text-base mt-10 px-12 sm:px-48">
-            Are you bored of the usual style to showcase your photos? <br/>
+            Are you bored of the Instagram style to showcase your photos? <br/>
             <a href="#bulb" className="text-customSecondary font-bold">Bulb</a> is the perfect place for you, 
             as it's carefully designed to catch the attention of everyone!
           </div>

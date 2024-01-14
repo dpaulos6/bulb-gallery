@@ -1,15 +1,5 @@
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Popover, Transition } from '@headlessui/react'
-import {
-  Bars3Icon,
-  LifebuoyIcon,
-  XMarkIcon,
-} from '@heroicons/react/24/outline'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
-import { FaInstagram, FaLinkedinIn, FaGithub, FaUser } from 'react-icons/fa'
-
-import { v4 as uuidv4 } from 'uuid';
 
 import { BulbLogo } from "../assets/logos/BulbLogo";
 
@@ -18,38 +8,13 @@ const navbarLinks = [
   { label: "Gallery", href: "#gallery", ariaLabel: "Gallery" },
 ];
 
-const userOptions = [
-  { label: "Dashboard", href: "/dashboard", ariaLabel: "Home" },
-  { label: "Profile", href: "/profile", ariaLabel: "Gallery" },
-  { label: "Settings", href: "/settings", ariaLabel: "Gallery" },
-];
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
-
-
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
-  function getRandomColor() {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  }
-  
-  function validateLogin(){
-    return 1+1 == 2
-  }
 
   return (
     <nav className="w-full h-20 flex flex-col justify-center items-center fixed bg-customDarkBg1 lg:bg-customDarkBgTransparent z-40 lg:backdrop-blur-xl select-none">
       <div className="2xl:w-[1280px] xl:w-10/12 w-11/12 flex justify-between items-center relative">
         <motion.div
-          className="min-w-[100px]"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3 }}
@@ -57,11 +22,11 @@ export const Navbar = () => {
         >
           <a className="navbar-link" href="/" aria-label="Home">
             <div className="flex justify-start items-center grow basis-0 cursor-pointer">
-              {/* <div className="text-white mr-2 text-6xl">
+              <div className="text-white mr-2 text-6xl">
                 <BulbLogo />
-              </div> */}
-              <div className="text-white font-['Righteous'] text-4xl">
-                bulb
+              </div>
+              <div className="text-white font-['Inter'] font-bold text-3xl">
+                Bulb
               </div>
             </div>
           </a>
@@ -72,7 +37,7 @@ export const Navbar = () => {
           transition={{ duration: 0.3 }}
           exit={{ opacity: 0 }}
         >
-          <div className="hidden lg:flex h-full pb-2">
+          <div className="hidden lg:flex h-full pl-12 pb-2">
             {navbarLinks.map(({ href, label, ariaLabel }) => (
               <a
                 className="navbar-link"
@@ -86,50 +51,24 @@ export const Navbar = () => {
           </div>
         </motion.div>
         <motion.div
-          className="flex flex-row gap-4 min-w-[100px] justify-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3 }}
           exit={{ opacity: 0 }}
         >
-          {(() => { 
-            if(validateLogin()) { 
-              return (
-                <a
-                  href="/profile"
-                  target="_self"
-                  className="text-white custom-border-gray hover-primary rounded-xl bg-customDarkBg2 hover:bg-customDarkBg3 p-3 text-md flex focus:outline-none focus-within:outline-none"
-                >
-                  <FaUser
-                    className='h-auto w-5 group-hover:text-gray-500'
-                    aria-hidden="true"
-                  />
-                </a>
-              )
-            } else {
-              return (
-                <div className="grow basis-0 justify-center hidden lg:flex">
-                  {/* <a
-                    className="text-white custom-border-gray hover-primary rounded-xl bg-customDarkBg2 hover:bg-customDarkBg3  border-gray-700 px-6 pt-2 pb-2 text-md flex"
-                    href="/login"
-                    target="_self"
-                    aria-label="login"
-                  >
-                    <span className="pt-px">Login</span>
-                  </a> */}
-                  <button 
-                    className="text-white custom-border-gray hover-primary rounded-xl bg-customDarkBg2 hover:bg-customDarkBg3  border-gray-700 px-6 pt-2 pb-2 text-md flex"
-                    onClick={() => loginWithRedirect()}
-                  >
-                    Log in
-                  </button>
-                </div>
-              )
-            }
-          })()}
+          <div className="grow basis-0 justify-end hidden lg:flex">
+            <a
+              className="text-white custom-border-gray hover-primary rounded-xl bg-customDarkBg2 hover:bg-customDarkBg3  border-gray-700 px-6 pt-2 pb-2 text-md flex"
+              href="/login"
+              target="_self"
+              aria-label="login"
+            >
+              <span className="pt-px">Login</span>
+            </a>
+          </div>
         </motion.div>
         <div
-          className="lg:hidden flex flex-col px-2 py-3 border-solid border border-gray-600 rounded-md cursor-pointer hover:bg-customDarkBg2"
+          className="lg:hidden flex flex-col  px-2 py-3 border-solid border border-gray-600 rounded-md cursor-pointer hover:bg-customDarkBg2"
           onClick={() => setIsOpen(!isOpen)}
         >
           <div className="w-5 h-0.5 bg-gray-500  mb-1"></div>
@@ -137,7 +76,6 @@ export const Navbar = () => {
           <div className="w-5 h-0.5 bg-gray-500 "></div>
         </div>
       </div>
-
       {/* Mobile navbar */}
       <AnimatePresence>
         {isOpen && (
@@ -161,12 +99,13 @@ export const Navbar = () => {
                   {label}
                 </a>
               ))}
-              <button 
-                className="text-white custom-border-gray hover-primary rounded-xl bg-customDarkBg2 hover:bg-customDarkBg3  border-gray-700 px-6 pt-2 pb-2 text-md flex"
-                onClick={() => loginWithRedirect()}
+              <a
+                className="text-white custom-border-gray rounded-xl bg-customDarkBg2 hover:bg-customDarkBg3  border-gray-700 pl-6 pr-8 pt-2 pb-2 text-sm flex"
+                href=""
+                target="_blank"
               >
-                Log in
-              </button>
+                Login
+              </a>
             </div>
           </motion.div>
         )}

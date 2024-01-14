@@ -41,14 +41,16 @@ export const Footer = () => {
           <div className="flex flex-wrap">
             <div className="w-full flex flex-row justify-between mb-16 lg:mb-0">
               <div className="flex items-center basis-0">
-                <div className="flex items-center grow basis-0 cursor-pointer select-none">
-                  {/* <div className="text-white mr-2 text-6xl">
-                    <BulbLogo />
-                  </div> */}
-                  <div className="text-white font-['Righteous'] text-4xl">
-                    bulb
+                <a className="" href="#home" aria-label="Home">
+                  <div className="flex items-center grow basis-0 cursor-pointer">
+                    <div className="text-white mr-2 text-6xl">
+                      <BulbLogo />
+                    </div>
+                    <div className="text-white font-['Inter'] font-bold text-3xl">
+                      Bulb
+                    </div>
                   </div>
-                </div>
+                </a>
               </div>
               <div className="flex w-auto lg:mx-0">
                 <p className="inline-block w-fit h-fit p-2 text-gray-200 text-lg">
