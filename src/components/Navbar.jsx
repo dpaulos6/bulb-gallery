@@ -1,28 +1,17 @@
-import { Fragment, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Popover, Transition } from '@headlessui/react'
-import {
-  Bars3Icon,
-  LifebuoyIcon,
-  XMarkIcon,
-} from '@heroicons/react/24/outline'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
-import { FaInstagram, FaLinkedinIn, FaGithub, FaUser } from 'react-icons/fa'
-
-import { v4 as uuidv4 } from 'uuid';
-
-import { BulbLogo } from "../assets/logos/BulbLogo";
+import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { FaUser } from 'react-icons/fa'
 
 const navbarLinks = [
   { label: "Home", href: "#home", ariaLabel: "Home" },
   { label: "Gallery", href: "#gallery", ariaLabel: "Gallery" },
-];
+]
 
 const userOptions = [
   { label: "Dashboard", href: "/dashboard", ariaLabel: "Home" },
   { label: "Profile", href: "/profile", ariaLabel: "Gallery" },
   { label: "Settings", href: "/settings", ariaLabel: "Gallery" },
-];
+]
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -57,9 +46,6 @@ export const Navbar = () => {
         >
           <a className="navbar-link" href="/" aria-label="Home">
             <div className="flex justify-start items-center grow basis-0 cursor-pointer">
-              {/* <div className="text-white mr-2 text-6xl">
-                <BulbLogo />
-              </div> */}
               <div className="text-white font-['Righteous'] text-4xl">
                 bulb
               </div>
