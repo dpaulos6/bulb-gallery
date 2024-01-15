@@ -17,21 +17,12 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  function getRandomColor() {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  }
-  
-  function validateLogin(){
-    return 1+2 == 2
+  const logout = () => {
+    localStorage.removeItem('isLoggedIn');
+    window.location.href = '/';
   }
 
   return (
@@ -79,37 +70,36 @@ export const Navbar = () => {
           exit={{ opacity: 0 }}
         >
           {(() => { 
-            if(validateLogin()) { 
+            if(localStorage.getItem('isLoggedIn') === 'true') { 
               return (
-                <a
-                  href="/profile"
-                  target="_self"
-                  className="text-white custom-border-gray hover-primary rounded-xl bg-customDarkBg2 hover:bg-customDarkBg3 p-3 text-md flex focus:outline-none focus-within:outline-none"
-                >
-                  <FaUser
-                    className='h-auto w-5 group-hover:text-gray-500'
-                    aria-hidden="true"
-                  />
-                </a>
+                <>
+                  <a
+                    href="/profile"
+                    target="_self"
+                    className="text-white custom-border-gray hover-primary rounded-xl bg-customDarkBg2 hover:bg-customDarkBg3 p-3 text-md flex focus:outline-none focus-within:outline-none"
+                  >
+                    <FaUser
+                      className='h-auto w-5 group-hover:text-gray-500'
+                      aria-hidden="true"
+                    />
+                  </a>
+                  <button 
+                    className="text-white custom-border-gray hover-primary rounded-xl bg-customDarkBg2 hover:bg-customDarkBg3  border-gray-700 px-6 pt-2 pb-2 text-md flex"
+                    onClick={() => logout()}
+                  >
+                    Logout
+                  </button>
+                </>
               )
             } else {
               return (
-                <div className="grow basis-0 justify-center hidden lg:flex">
-                  <a
-                    className="text-white custom-border-gray hover-primary rounded-xl bg-customDarkBg2 hover:bg-customDarkBg3  border-gray-700 px-6 pt-2 pb-2 text-md flex"
-                    href="/login"
-                    target="_self"
-                    aria-label="login"
-                  >
-                    <span className="pt-px">Login</span>
-                  </a>
-                  {/* <button 
-                    className="text-white custom-border-gray hover-primary rounded-xl bg-customDarkBg2 hover:bg-customDarkBg3  border-gray-700 px-6 pt-2 pb-2 text-md flex"
-                    onClick={() => loginWithRedirect()}
-                  >
-                    Log in
-                  </button> */}
-                </div>
+                <a
+                  href="/login"
+                  target="_self"
+                  className="text-white custom-border-gray hover-primary rounded-xl bg-customDarkBg2 hover:bg-customDarkBg3 p-3 text-md flex focus:outline-none focus-within:outline-none"
+                >
+                  <span className="pt-px">Login</span>
+                </a>
               )
             }
           })()}

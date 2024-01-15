@@ -44,7 +44,7 @@ export const Gallery = () => {
         {galleryData.map((gallery, index) => (
           <div
             className="photo-card w-full custom-border-gray-darker cursor-zoom-in rounded-xl bg-customDarkBg3 flex flex-col"
-            key={() => index}
+            key={index}
             onMouseEnter={() => handleMouseEnter(index)}
             onMouseLeave={handleMouseLeave}
             style={{

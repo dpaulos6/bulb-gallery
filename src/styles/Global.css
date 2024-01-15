@@ -50,3 +50,11 @@
 .photo-card:hover .photo-options {
   opacity: 1;
 }
+
+.alert-container {
+  transition: opacity 0.5s ease-in-out;
+}
+
+.alert-container.hide {
+  opacity: 0;
+}
