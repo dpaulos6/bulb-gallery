@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { motion } from "framer-motion";
 import { BulbLogo } from "../assets/logos/BulbLogo";
 
-import supabase from "../config/supabaseClient";
 import { encryptData, decryptData } from '../utils/cryptoUtils';
 
 export const Signin = () => {
@@ -36,12 +35,8 @@ export const Signin = () => {
       const data = await response.json();
   
       if (data.success) {
-        // Login successful, you can handle the logged-in state here
-        localStorage.setItem('isLoggedIn', 'true');
-        localStorage.setItem('userId', encryptData(data.user.id));
         window.location.href = '/';
       } else {
-        localStorage.removeItem('isLoggedIn');
         setIsVisible(true);
         setLoginError(true);
       }
@@ -51,7 +46,7 @@ export const Signin = () => {
   };
 
   return (
-    <section className="flex w-screen h-screen">
+    <section className="flex w-screen h-screen select-none">
       <motion.div
         className="mx-auto my-auto h-auto w-auto"
         initial={{ opacity: 0 }}
@@ -66,9 +61,9 @@ export const Signin = () => {
             </div>
           </div>
         </a>
+        <span className="flex justify-center text-4xl text-white pt-8 pb-4">Login</span>
         {loginError ? (
           <>
-            <span className="flex justify-center text-4xl text-white pt-8 pb-4">Login</span>
             {isVisible && (
               <div className="inline-flex w-full bg-red-100 border border-red-400 text-red-700 px-4 py-3 mb-4 rounded relative" role="alert">
                 <div className='mx-auto'>
@@ -84,11 +79,9 @@ export const Signin = () => {
               </div>
             )}
           </>
-        ) : (
-          <span className="flex justify-center text-4xl text-white py-8">Login</span>
-        )}
+        ) : (<></>)}
         
-        <form id="loginForm" className="w-96 space-y-4 mx-auto">
+        <form id="loginForm" className="w-96 space-y-4 mx-auto mt-4">
           <div className="flex flex-col">
             <label className="text-white text-lg" htmlFor="email">Email:</label>
             <input 
@@ -107,7 +100,7 @@ export const Signin = () => {
               onChange={handlePasswordChange}
             />
           </div>
-          <div className="flex flex-row w-full gap-6">
+          <div className="flex flex-row w-full">
             <button
               className="text-white w-full justify-center border cursor-pointer rounded-xl focus:outline-none bg-primary-800 hover:bg-primary-700 border-primary-600 bg-transition px-6 pt-2 pb-2 text-md flex"
               type="button"
@@ -115,14 +108,12 @@ export const Signin = () => {
             >
               Login
             </button>
-            <a 
-              className="text-white w-full justify-center custom-border-gray cursor-pointer rounded-xl focus:outline-none bg-customDarkBg3 hover:bg-customDarkBg3Hover bg-transition px-6 pt-2 pb-2 text-md flex"
-              href="/register"
-              target="_self"
-              value="Register"
-            >
-              Register
-            </a>
+          </div>
+          <div className="flex flex-row w-full justify-center">
+            <span className='inline-flex gap-1'>
+              <p className='text-white'>Don't have an account yet?</p>
+              <a className='text-primary-500' href='/register'>Create one</a>
+            </span>
           </div>
         </form>
       </motion.div>

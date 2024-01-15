@@ -3,29 +3,16 @@ const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-import CryptoJS from 'crypto-js';
-
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Method Not Allowed' });
     }
 
-    const { username, name, email, password } = req.body;
-    
     try {
-        const { data, error } = await supabase.auth.signUp({
-            email: email,
-            password: password,
-            options: {
-                data: {
-                    username: username,
-                    name: name,
-                },
-            },
-        })
+        let { error } = await supabase.auth.signOut()
 
-        if(data){
-            return res.status(200).json({ success: true, data: data })
+        if(!error){
+            return res.status(200).json({ success: true, data: 'Logout successful.' })
         }
         if(error){
             return res.status(500).json({ success: false, error: 'Unexpected error' });
