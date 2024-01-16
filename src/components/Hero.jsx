@@ -3,8 +3,6 @@ import { motion } from "framer-motion";
 
 import { InvitationModal } from "./InvitationModal";
 
-// import { hashPassword, comparePasswords } from '../utils/bcryptUtils';
-
 export const Hero = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);  
 
@@ -33,6 +31,7 @@ export const Hero = () => {
           </div>
         </motion.div>
         <motion.div
+          className="hidden xs:block"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
@@ -44,6 +43,7 @@ export const Hero = () => {
           </div>
         </motion.div>
         <motion.div
+          className="hidden xs:block"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.15 }}

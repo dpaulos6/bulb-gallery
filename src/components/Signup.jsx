@@ -3,22 +3,10 @@ import { motion } from "framer-motion";
 
 export const Signup = () => {
   const [passwordMismatch, setPasswordMismatch] = useState(false);
-  const [isPasswordMismatchVisible, setIsPasswordMismatchVisible] = useState(true);
-  const handlePasswordMismatchClose = () => {
-    setIsPasswordMismatchVisible(false);
-  }; 
-
   const [registerError, setRegisterError] = useState(false);
-  const [isRegisterErrorVisible, setIsRegisterErrorVisible] = useState(true);
-  const handleRegisterErrorClose = () => {
-    setIsRegisterErrorVisible(false);
-  };
-
   const [registerSuccess, setRegisterSuccess] = useState(false);
-  const [isRegisterSuccessVisible, setIsRegisterSuccessVisible] = useState(true);
-  const handleRegisterSuccessClose = () => {
-    setIsRegisterSuccessVisible(false);
-  };
+  const [invalidUsername, setInvalidUsername] = useState(false);
+  const [invalidEmail, setInvalidEmail] = useState(false);
 
   const [formData, setFormData] = useState({
     username: '',
@@ -33,10 +21,67 @@ export const Signup = () => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
+
     });
+    if(e.target.name === 'username'){
+      verifyUsername(e.target.value)
+    }
+    if(e.target.name === 'email'){
+      verifyEmail(e.target.value)
+    }
   };
 
+  async function verifyUsername(value) {
+    try{
+      const response = await fetch('/api/getUsername.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: value
+        }),
+      });
+
+      if(response.status === 200){
+        setInvalidUsername(true);
+      } else {
+        setInvalidUsername(false);
+      }
+    } catch (error) {
+      console.log(error);
+      setInvalidUsername(false);
+    }
+  }
+
+  async function verifyEmail(value) {
+    try{
+      const response = await fetch('/api/getEmail.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: value
+        }),
+      });
+
+      if(response.status === 200){
+        setInvalidEmail(true);
+      } else {
+        setInvalidEmail(false);
+      }
+    } catch (error) {
+      console.log(error);
+      setInvalidEmail(false);
+    }
+  }
+
   const handleSubmit = async () => {
+    setRegisterSuccess(false)
+    setRegisterError(false)
+    setPasswordMismatch(false)
+
     if(formData.password === formData.rePassword) {
       try {
         const response = await fetch('/api/register', {
@@ -53,25 +98,26 @@ export const Signup = () => {
         });
   
         if (response.ok) {
-          setIsRegisterSuccessVisible(true);
           setRegisterSuccess(true);
+
+          let registerButton = document.getElementById('registerButton');
+          registerButton.disabled = true;
+          registerButton.innerHTML = "Registering...";
+          registerButton.className= 'text-white w-full justify-center border cursor-pointer rounded-xl focus:outline-none bg-customDarkBg3 hover:bg-customDarkBg3Hover border-customGrayBorder bg-transition px-6 pt-2 pb-2 text-md flex'
+
           setTimeout(() => {
             window.location.href = '/login';
           }, 2500);
         } else {
-          setIsRegisterErrorVisible(true);
           setRegisterError(true);
         }
       } catch (error) {
-        setIsRegisterErrorVisible(true);
         setRegisterError(true);
       }
     } else {
-      setIsPasswordMismatchVisible(true);
       setPasswordMismatch(true);
     }
   };
-  
 
   return (
     <section className="flex w-screen h-screen">
@@ -82,72 +128,58 @@ export const Signup = () => {
         transition={{ duration: 0.3 }}
         exit={{ opacity: 0 }}
       >
-        <a className="flex mb-10 -mt-20" href="/">
-          <div className="flex justify-center items-center grow basis-0 cursor-pointer duration-150">
-            <div className="text-white font-['Righteous'] text-4xl">
-              bulb
-            </div>
-          </div>
-        </a>
-        <span className="flex justify-center text-4xl text-white pt-8 pb-4">Register</span>
-        {registerError ? (
-          <>
-            {isRegisterErrorVisible && (
-              <div className="inline-flex w-full bg-red-100 border border-red-400 text-red-700 px-4 py-3 mb-4 rounded relative" role="alert">
-                <div className='mx-auto'>
-                  <strong className="font-bold mr-1">User registration failed!</strong>
-                  <span className="block sm:inline">Something went wrong.</span>
-                </div>
-                <span className='justify-end'>
-                  <svg className="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" onClick={handleRegisterErrorClose}>
-                    <title>Close</title>
-                    <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/>
-                  </svg>
-                </span>
-              </div>
-            )}
-          </>
-        ) : (<></>)}
-
-        {passwordMismatch ? (
-          <>
-            {isPasswordMismatchVisible && (
-              <div className="inline-flex w-full bg-red-100 border border-red-400 text-red-700 px-4 py-3 mb-4 rounded relative" role="alert">
-                <div className='mx-auto'>
-                  <strong className="font-bold mr-1">User registration failed!</strong>
-                  <span className="block sm:inline">Passwords mismatch.</span>
-                </div>
-                <span className='justify-end'>
-                  <svg className="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" onClick={handlePasswordMismatchClose}>
-                    <title>Close</title>
-                    <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/>
-                  </svg>
-                </span>
-              </div>
-            )}
-          </>
-        ) : (<></>)}
+        <span className="flex justify-center text-4xl text-white pb-4">Register</span>
 
         {registerSuccess ? (
-          <>
-            {isRegisterSuccessVisible && (
-              <div className="inline-flex w-full bg-green-100 border border-green-400 text-green-700 px-4 py-3 mb-4 rounded relative" role="alert">
-                <div className='mx-auto'>
-                  <strong className="font-bold mr-1">User registration succeeded!</strong>
-                  <span className="block sm:inline">Redirecting...</span>
-                </div>
-                <span className='justify-end'>
-                  <svg className="fill-current h-6 w-6 text-green-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" onClick={handleRegisterSuccessClose}>
-                    <title>Close</title>
-                    <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/>
-                  </svg>
-                </span>
-              </div>
-            )}
-          </>
-        ) : (<></>)}
+          <div className="flex flex-col w-full text-center px-4 py-3 mb-4 rounded relative" role="alert">
+            <div className='mx-auto inline-flex'>
+              <span className="text-lg text-green-400">User registration successful!</span>
+            </div>
+            <div className='mx-auto'>
+              <a href="/account_recovery" className="text-[#aaa] sm:inline">Redirecting...</a>
+            </div>
+          </div>
+        ): null}
+
+        {registerError ? (
+          <div className="flex flex-col w-full text-center px-4 py-3 mb-4 rounded relative" role="alert">
+            <div className='mx-auto inline-flex'>
+              <span className="text-lg text-red-500">Something went wrong!</span>
+            </div>
+            <div className='mx-auto'>
+              <span className="block text-[#aaa] sm:inline">If the error persists, contact support.</span>
+            </div>
+          </div>
+        ) : null}
+
+        {passwordMismatch ? (
+          <div className="inline-flex w-full text-center px-4 py-3 mb-4 rounded relative" role="alert">
+            <div className='mx-auto'>
+              <span className="text-lg text-red-500">Passwords do not match!</span>
+            </div>
+          </div>
+        ) : null}
+
+        {invalidUsername ? (
+          <div className="inline-flex w-full text-center px-4 py-3 mb-4 rounded relative" role="alert">
+            <div className='mx-auto'>
+              <span className="text-lg text-red-500">Username is already in use!</span>
+            </div>
+          </div>
+        ) : null}
+
+        {invalidEmail ? (
+          <div className="flex flex-col w-full text-center px-4 py-3 mb-4 rounded relative" role="alert">
+            <div className='mx-auto inline-flex'>
+              <span className="text-lg text-red-500">Email is already in use!</span>
+            </div>
+            <div className='mx-auto'>
+              <a href="/account_recovery" className="block text-blue-400 sm:inline">Login</a>
+            </div>
+          </div>
+        ) : null}
         
-        <form id="loginForm" className="w-96 space-y-4 mx-auto">
+        <form id="loginForm" className="w-96 space-y-4 mt-4 px-6 mx-auto">
           <div className="flex flex-col">
             <label className="text-white text-lg" htmlFor="username">Username:</label>
             <input 
@@ -206,6 +238,7 @@ export const Signup = () => {
           </div>
           <div className="flex flex-row w-full gap-6">
             <button
+              id="registerButton"
               className="text-white w-full justify-center border cursor-pointer rounded-xl focus:outline-none bg-primary-800 hover:bg-primary-700 border-primary-600 bg-transition px-6 pt-2 pb-2 text-md flex"
               type="button"
               onClick={handleSubmit}
@@ -216,7 +249,7 @@ export const Signup = () => {
           <div className="flex flex-row w-full justify-center">
             <span className='inline-flex gap-1'>
               <p className='text-white'>Already have an account?</p>
-              <a className='text-primary-500' href='/register'>Login</a>
+              <a className='text-primary-500' href='/login'>Login</a>
             </span>
           </div>
         </form>

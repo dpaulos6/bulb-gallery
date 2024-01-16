@@ -3,8 +3,6 @@ const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-import CryptoJS from 'crypto-js';
-
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Method Not Allowed' });
@@ -19,6 +17,7 @@ export default async function handler(req, res) {
             options: {
                 data: {
                     username: username,
+                    email: email,
                     name: name,
                 },
             },

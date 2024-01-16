@@ -54,13 +54,13 @@ export const Signin = () => {
         transition={{ duration: 0.3 }}
         exit={{ opacity: 0 }}
       >
-        <a className="flex mb-10 -mt-20" href="/">
+        {/* <a className="flex mb-10 -mt-20" href="/">
           <div className="flex justify-center items-center grow basis-0 cursor-pointer duration-150">
             <div className="text-white font-['Righteous'] text-4xl">
               bulb
             </div>
           </div>
-        </a>
+        </a> */}
         <span className="flex justify-center text-4xl text-white pt-8 pb-4">Login</span>
         {loginError ? (
           <>
@@ -71,9 +71,17 @@ export const Signin = () => {
                   <span className="block sm:inline">Invalid credentials.</span>
                 </div>
                 <span className='justify-end'>
-                  <svg className="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" onClick={handleClose}>
+                  <svg className="fill-current h-6 w-6 text-red-500" 
+                    role="button" 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    viewBox="0 0 20 20" 
+                    onClick={handleClose}
+                  >
                     <title>Close</title>
-                    <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/>
+                    <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 
+                    1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 
+                    8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 
+                    0 0 1 0 1.698z"/>
                   </svg>
                 </span>
               </div>
@@ -81,7 +89,7 @@ export const Signin = () => {
           </>
         ) : (<></>)}
         
-        <form id="loginForm" className="w-96 space-y-4 mx-auto mt-4">
+        <form id="loginForm" className="w-96 space-y-4 mx-auto mt-4 mb-8 px-6">
           <div className="flex flex-col">
             <label className="text-white text-lg" htmlFor="email">Email:</label>
             <input 
