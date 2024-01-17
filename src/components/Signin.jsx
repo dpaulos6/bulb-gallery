@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import CreateUserInfo from './auth/createUserInfo';
 import { motion } from "framer-motion";
 
 export const Signin = () => {
