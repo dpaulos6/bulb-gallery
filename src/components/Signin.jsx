@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import CreateUserInfo from './auth/createUserInfo';
 import { motion } from "framer-motion";
-import { BulbLogo } from "../assets/logos/BulbLogo";
-
-import { encryptData, decryptData } from '../utils/cryptoUtils';
 
 export const Signin = () => {
   const [email, setEmail] = useState(null);
@@ -15,14 +13,17 @@ export const Signin = () => {
     setPassword(e.target.value);
   };
   
-  const [isVisible, setIsVisible] = useState(true);
-  const handleClose = () => {
-    setIsVisible(false);
-  };  
-  
   const [loginError, setLoginError] = useState(null);
+  const [loginErrorCount, setLoginErrorCount] = useState(0);
 
-  const handleLogin = async () => {
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    if(loginErrorCount < 3){
+      setLoginError(false);
+    } else {
+      document.getElementById('errorMessage').innerText = ''
+    }
+
     try {
       const response = await fetch('/api/login', {
         method: 'POST',
@@ -31,14 +32,22 @@ export const Signin = () => {
         },
         body: JSON.stringify({ email, password }),
       });
-  
+
       const data = await response.json();
-  
-      if (data.success) {
+
+      if (data.success === true) {
+        const token = data.data.session.access_token;
+        localStorage.setItem('authToken', token);
+        const id = data.data.user.id;
+        localStorage.setItem('userId', id);
         window.location.href = '/';
       } else {
-        setIsVisible(true);
-        setLoginError(true);
+        if(loginErrorCount >= 3){
+          document.getElementById('errorMessage').innerText = 'Invalid credentials!'
+        } else {
+          setLoginError(true);
+          setLoginErrorCount(v => v + 1)
+        }
       }
     } catch (error) {
       console.error('Unexpected error during login:', error.message);
@@ -54,42 +63,25 @@ export const Signin = () => {
         transition={{ duration: 0.3 }}
         exit={{ opacity: 0 }}
       >
-        {/* <a className="flex mb-10 -mt-20" href="/">
-          <div className="flex justify-center items-center grow basis-0 cursor-pointer duration-150">
-            <div className="text-white font-['Righteous'] text-4xl">
-              bulb
-            </div>
-          </div>
-        </a> */}
         <span className="flex justify-center text-4xl text-white pt-8 pb-4">Login</span>
         {loginError ? (
-          <>
-            {isVisible && (
-              <div className="inline-flex w-full bg-red-100 border border-red-400 text-red-700 px-4 py-3 mb-4 rounded relative" role="alert">
-                <div className='mx-auto'>
-                  <strong className="font-bold mr-1">Login Failed!</strong>
-                  <span className="block sm:inline">Invalid credentials.</span>
-                </div>
-                <span className='justify-end'>
-                  <svg className="fill-current h-6 w-6 text-red-500" 
-                    role="button" 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    viewBox="0 0 20 20" 
-                    onClick={handleClose}
-                  >
-                    <title>Close</title>
-                    <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 
-                    1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 
-                    8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 
-                    0 0 1 0 1.698z"/>
-                  </svg>
-                </span>
+          <div className="flex flex-col w-full text-center px-4 py-3 mb-4 rounded relative" role="alert">
+            <div className='mx-auto inline-flex'>
+              <span id="errorMessage" className="text-lg text-red-500">Invalid credentials!</span>
+            </div>
+            {loginErrorCount >= 3 ? (
+              <div className='mx-auto'>
+                <a href='/account_recovery' className="block text-blue-500 sm:inline">Recover your account</a>
+              </div>
+            ) : (
+              <div className='mx-auto'>
+                <span className="block text-[#aaa] sm:inline">Please try again.</span>
               </div>
             )}
-          </>
-        ) : (<></>)}
+          </div>
+        ) : null}
         
-        <form id="loginForm" className="w-96 space-y-4 mx-auto mt-4 mb-8 px-6">
+        <form id="loginForm" className="w-96 space-y-4 mx-auto mt-4 mb-8 px-6" onSubmit={handleLogin}>
           <div className="flex flex-col">
             <label className="text-white text-lg" htmlFor="email">Email:</label>
             <input 
@@ -101,18 +93,17 @@ export const Signin = () => {
             />
             <label className="text-white text-lg" htmlFor="password">Password:</label>
             <input 
-              className="text-white custom-border-gray rounded-xl mt-2 mb-4 focus:outline-none focus:border-customPrimaryBorder bg-customDarkBg2 hover:bg-customDarkBg3 border-gray-700 transition px-6 pt-2 pb-2 text-md flex"
+              className="text-white custom-border-gray rounded-xl my-2 focus:outline-none focus:border-customPrimaryBorder bg-customDarkBg2 hover:bg-customDarkBg3 border-gray-700 transition px-6 pt-2 pb-2 text-md flex"
               name="password"
               type="password"
               required
               onChange={handlePasswordChange}
             />
           </div>
-          <div className="flex flex-row w-full">
+          <div className="flex flex-row m-0 w-full">
             <button
               className="text-white w-full justify-center border cursor-pointer rounded-xl focus:outline-none bg-primary-800 hover:bg-primary-700 border-primary-600 bg-transition px-6 pt-2 pb-2 text-md flex"
-              type="button"
-              onClick={handleLogin}
+              type="submit"
             >
               Login
             </button>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 export const Signup = () => {
@@ -7,6 +7,7 @@ export const Signup = () => {
   const [registerSuccess, setRegisterSuccess] = useState(false);
   const [invalidUsername, setInvalidUsername] = useState(false);
   const [invalidEmail, setInvalidEmail] = useState(false);
+
 
   const [formData, setFormData] = useState({
     username: '',
@@ -21,14 +22,18 @@ export const Signup = () => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
-
     });
-    if(e.target.name === 'username'){
-      verifyUsername(e.target.value)
-    }
-    if(e.target.name === 'email'){
-      verifyEmail(e.target.value)
-    }
+  };
+
+  const handleBlur = (e) => {
+    setTimeout(() => {
+      if(e.target.name === 'username'){
+        verifyUsername(e.target.value)
+      }
+      if(e.target.name === 'email'){
+        verifyEmail(e.target.value)
+      }
+    }, 250);
   };
 
   async function verifyUsername(value) {
@@ -45,12 +50,22 @@ export const Signup = () => {
 
       if(response.status === 200){
         setInvalidUsername(true);
+        let registerButton = document.getElementById('registerButton');
+        registerButton.disabled = true;
+        registerButton.className= 'text-white w-full justify-center border cursor-pointer rounded-xl focus:outline-none bg-customDarkBg3 hover:bg-customDarkBg3Hover border-customGrayBorder bg-transition px-6 pt-2 pb-2 text-md flex'
+  
       } else {
         setInvalidUsername(false);
+        let registerButton = document.getElementById('registerButton');
+        registerButton.disabled = true;
+        registerButton.className = 'text-white w-full justify-center border cursor-pointer rounded-xl focus:outline-none bg-primary-800 hover:bg-primary-700 border-primary-600 bg-transition px-6 pt-2 pb-2 text-md flex'
       }
     } catch (error) {
       console.log(error);
       setInvalidUsername(false);
+      let registerButton = document.getElementById('registerButton');
+      registerButton.disabled = true;
+      registerButton.className = 'text-white w-full justify-center border cursor-pointer rounded-xl focus:outline-none bg-primary-800 hover:bg-primary-700 border-primary-600 bg-transition px-6 pt-2 pb-2 text-md flex'
     }
   }
 
@@ -68,16 +83,27 @@ export const Signup = () => {
 
       if(response.status === 200){
         setInvalidEmail(true);
+        let registerButton = document.getElementById('registerButton');
+        registerButton.disabled = true;
+        registerButton.className= 'text-white w-full justify-center border cursor-pointer rounded-xl focus:outline-none bg-customDarkBg3 hover:bg-customDarkBg3Hover border-customGrayBorder bg-transition px-6 pt-2 pb-2 text-md flex'
+  
       } else {
         setInvalidEmail(false);
+        let registerButton = document.getElementById('registerButton');
+        registerButton.disabled = true;
+        registerButton.className = 'text-white w-full justify-center border cursor-pointer rounded-xl focus:outline-none bg-primary-800 hover:bg-primary-700 border-primary-600 bg-transition px-6 pt-2 pb-2 text-md flex'
       }
     } catch (error) {
       console.log(error);
       setInvalidEmail(false);
+      let registerButton = document.getElementById('registerButton');
+      registerButton.disabled = true;
+      registerButton.className = 'text-white w-full justify-center border cursor-pointer rounded-xl focus:outline-none bg-primary-800 hover:bg-primary-700 border-primary-600 bg-transition px-6 pt-2 pb-2 text-md flex'
     }
   }
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     setRegisterSuccess(false)
     setRegisterError(false)
     setPasswordMismatch(false)
@@ -102,7 +128,7 @@ export const Signup = () => {
 
           let registerButton = document.getElementById('registerButton');
           registerButton.disabled = true;
-          registerButton.innerHTML = "Registering...";
+          registerButton.innerText = "Registering...";
           registerButton.className= 'text-white w-full justify-center border cursor-pointer rounded-xl focus:outline-none bg-customDarkBg3 hover:bg-customDarkBg3Hover border-customGrayBorder bg-transition px-6 pt-2 pb-2 text-md flex'
 
           setTimeout(() => {
@@ -179,7 +205,7 @@ export const Signup = () => {
           </div>
         ) : null}
         
-        <form id="loginForm" className="w-96 space-y-4 mt-4 px-6 mx-auto">
+        <form id="loginForm" className="w-96 space-y-4 mt-4 px-6 mx-auto" onSubmit={handleSubmit}>
           <div className="flex flex-col">
             <label className="text-white text-lg" htmlFor="username">Username:</label>
             <input 
@@ -188,6 +214,8 @@ export const Signup = () => {
               type="text"
               value={formData.username}
               onChange={handleChange}
+              onBlur={handleBlur}
+              required
             />
             <div className="flex flex-row gap-2">
               <div className="flex flex-col">
@@ -198,6 +226,7 @@ export const Signup = () => {
                   type="text"
                   value={formData.name}
                   onChange={handleChange}
+                  required
                 />
               </div>
               <div className="flex flex-col">
@@ -208,6 +237,7 @@ export const Signup = () => {
                   type="text"
                   value={formData.surname}
                   onChange={handleChange}
+                  required
                 />
               </div>
             </div>
@@ -218,6 +248,8 @@ export const Signup = () => {
               type="email"
               value={formData.email}
               onChange={handleChange}
+              onBlur={handleBlur}
+              required
             />
             <label className="text-white text-lg" htmlFor="password">Password:</label>
             <input 
@@ -226,6 +258,7 @@ export const Signup = () => {
               type="password"
               value={formData.password}
               onChange={handleChange}
+              required
             />
             <label className="text-white text-lg" htmlFor="re-password">Confirm password:</label>
             <input 
@@ -234,14 +267,14 @@ export const Signup = () => {
               type="password"
               value={formData.rePassword}
               onChange={handleChange}
+              required
             />
           </div>
           <div className="flex flex-row w-full gap-6">
             <button
               id="registerButton"
               className="text-white w-full justify-center border cursor-pointer rounded-xl focus:outline-none bg-primary-800 hover:bg-primary-700 border-primary-600 bg-transition px-6 pt-2 pb-2 text-md flex"
-              type="button"
-              onClick={handleSubmit}
+              type="submit"
             >
               Register
             </button>

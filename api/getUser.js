@@ -4,29 +4,27 @@ const supabaseKey = process.env.SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default async function handler(req, res) {
-    if (req.method !== 'POST') {
+    if (req.method !== 'GET') {
         return res.status(405).json({ error: 'Method Not Allowed' });
     }
 
-    const { email, password } = req.body;
+    const accessToken = req.headers.authorization;
+
+    if (!accessToken) {
+        return res.status(401).json({ error: 'Unauthorized - Access Token missing' });
+    }
 
     try {
-        let { data, error } = await supabase.auth.signInWithPassword({
-            email: email,
-            password: password
-        })
+        const { data, error } = await supabase.auth.getUser(accessToken);
 
-        if(data.user) {
-            return res.status(200).json({ success: true, data: data })
-        } else {
-            return res.status(500).json({ success: false, error: 'Invalid Credentials.' });
-        }
-
-        if(error){
+        if (error) {
+            console.error('Error fetching user information:', error.message);
             return res.status(500).json({ success: false, error: 'Unexpected error' });
         }
+
+        return res.status(200).json({ success: true, data });
     } catch (error) {
-        console.error('Unexpected error during login:', error.message);
+        console.error('Unexpected error during user information retrieval:', error.message);
         return res.status(500).json({ success: false, error: 'Unexpected error' });
     }
 }
