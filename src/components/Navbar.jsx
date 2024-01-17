@@ -11,9 +11,8 @@ const navbarLinks = [
 ]
 
 const userOptions = [
-  { label: "Dashboard", href: "/dashboard", ariaLabel: "Home" },
-  { label: "Profile", href: "/profile", ariaLabel: "Gallery" },
-  { label: "Settings", href: "/settings", ariaLabel: "Gallery" },
+  { label: "Profile", href: "/profile", icon: <UserIcon className="h-4 w-4 my-auto" aria-hidden="true" /> },
+  { label: "Settings", href: "/settings", icon: <SettingsIcon className="h-4 w-4 my-auto" aria-hidden="true" /> },
 ]
 
 function classNames(...classes) {
@@ -109,34 +108,23 @@ export const Navbar = () => {
               >
                 <Menu.Items className="absolute right-0 z-10 mt-2 w-32 min-w-max origin-top-right rounded-md bg-customDarkBg3 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                   <div className="py-1">
-                    <Menu.Item>
-                      {({ active }) => (
-                        <a
-                          className={classNames(
-                            active ? 'bg-customDarkBg3Hover text-white' : 'text-[#bbb]',
-                            'flex flex-row cursor-pointer gap-2 px-3 py-2 text-sm'
-                          )}
-                          href="/profile"
-                        >
-                          <UserIcon className="h-4 w-4 my-auto" aria-hidden="true" />
-                          Profile
-                        </a>
-                      )}
-                    </Menu.Item>
-                    <Menu.Item>
-                      {({ active }) => (
-                        <a
-                          className={classNames(
-                            active ? 'bg-customDarkBg3Hover text-white' : 'text-[#bbb]',
-                            'flex flex-row cursor-pointer gap-2 px-3 py-2 text-sm'
-                          )}
-                          href="/settings"
-                        >
-                          <SettingsIcon className="h-4 w-4 my-auto" aria-hidden="true" />
-                          Settings
-                        </a>
-                      )}
-                    </Menu.Item>
+                    {userOptions.map(({ label, href, icon }) => (
+                      <Menu.Item key={label}>
+                        {({ active }) => (
+                          <a
+                            className={classNames(
+                              active ? 'bg-customDarkBg3Hover text-white' : 'text-[#bbb]',
+                              'flex flex-row cursor-pointer gap-2 px-3 py-2 text-sm'
+                            )}
+                            href={href}
+                          >
+                            {icon}
+                            {label}
+                          </a>
+                        )}
+                      </Menu.Item>
+                    ))}
+                    <hr className='border-[#444] w-5/6 mx-auto my-1'/>
                     <Menu.Item>
                       {({ active }) => (
                         <button
