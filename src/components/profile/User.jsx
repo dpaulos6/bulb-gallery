@@ -3,7 +3,7 @@ export const Hero = () => {
     <>
       <div className="pt-20"></div>
       <div className="">
-      <h2>My Hero Component</h2>
+        <h2>My Hero Component</h2>
       </div>
     </>
   );

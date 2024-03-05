@@ -1,11 +1,11 @@
-import fs from 'fs';
-import path from 'path';
+import fs from "fs";
+import path from "path";
 
 const componentName = process.argv[2];
-const targetDirectory = process.argv[3] || 'src/components';
+const targetDirectory = process.argv[3] || "src/components";
 
 if (!componentName) {
-  console.error('Please provide a component name.');
+  console.error("Please provide a component name.");
   process.exit(1);
 }
 

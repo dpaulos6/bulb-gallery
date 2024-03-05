@@ -4,12 +4,7 @@ import { FaInstagram, FaGithub } from "react-icons/fa6/index.js";
 const footerData = [
   {
     title: "Products",
-    items: [
-      "Services", 
-      "About Us", 
-      "News and Stories", 
-      "Roadmap"
-    ],
+    items: ["Services", "About Us", "News and Stories", "Roadmap"],
   },
   {
     title: "Important Links",
@@ -24,12 +19,7 @@ const footerData = [
   },
   {
     title: "Company",
-    items: [
-      "About Us", 
-      "Jobs", 
-      "Press", 
-      "Contact Us"
-    ],
+    items: ["About Us", "Jobs", "Press", "Contact Us"],
   },
 ];
 

@@ -7,9 +7,9 @@ export const setCookie = (name, value, days) => {
 
 export const getCookie = (name) => {
   const decodedCookie = decodeURIComponent(document.cookie);
-  const cookies = decodedCookie.split(';');
+  const cookies = decodedCookie.split(";");
   for (const cookie of cookies) {
-    const [cookieName, cookieValue] = cookie.split('=');
+    const [cookieName, cookieValue] = cookie.split("=");
     if (cookieName.trim() === name) {
       return cookieValue;
     }

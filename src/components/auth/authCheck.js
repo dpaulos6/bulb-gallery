@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 
 const AuthCheck = () => {
-    const isLoggedIn = () => {
-        const token = localStorage.getItem('authToken');
-        return !!token;
-    };
+  const isLoggedIn = () => {
+    const token = localStorage.getItem("authToken");
+    return !!token;
+  };
 
-    return isLoggedIn();
+  return isLoggedIn();
 };
 
 export default AuthCheck;

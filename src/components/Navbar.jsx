@@ -1,45 +1,57 @@
-import { Fragment } from 'react'
-import { Menu, Transition } from '@headlessui/react'
-import { motion } from "framer-motion"
-import { UserIcon, Cog6ToothIcon as SettingsIcon, ArrowRightStartOnRectangleIcon as LogoutIcon } from '@heroicons/react/24/outline'
+import { Fragment } from "react";
+import { Menu, Transition } from "@headlessui/react";
+import { motion } from "framer-motion";
+import {
+  UserIcon,
+  Cog6ToothIcon as SettingsIcon,
+  ArrowRightStartOnRectangleIcon as LogoutIcon,
+} from "@heroicons/react/24/outline";
 
-import AuthCheck from "./auth/authCheck"
+import AuthCheck from "./auth/authCheck";
 
 const navbarLinks = [
   { label: "Home", href: "#home", ariaLabel: "Home" },
   { label: "Gallery", href: "#gallery", ariaLabel: "Gallery" },
-]
+];
 
 const userOptions = [
-  { label: "Profile", href: "/profile", icon: <UserIcon className="h-4 w-4 my-auto" aria-hidden="true" /> },
-  { label: "Settings", href: "/settings", icon: <SettingsIcon className="h-4 w-4 my-auto" aria-hidden="true" /> },
-]
+  {
+    label: "Profile",
+    href: "/profile",
+    icon: <UserIcon className="h-4 w-4 my-auto" aria-hidden="true" />,
+  },
+  {
+    label: "Settings",
+    href: "/settings",
+    icon: <SettingsIcon className="h-4 w-4 my-auto" aria-hidden="true" />,
+  },
+];
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
 export const Navbar = () => {
   const logout = async () => {
     try {
-      const response = await fetch('/api/logout', {
-        method: 'POST',
+      const response = await fetch("/api/logout", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
       });
-  
+
       const data = await response.json();
-  
+
       if (data.success) {
-        localStorage.removeItem('authToken');
-        localStorage.removeItem('userId');
+        localStorage.removeItem("authToken");
+        localStorage.removeItem("userId");
         window.location.reload();
       } else {
-        console.error('Logout failed:', data.error);
+        console.error("Logout failed:", data.error);
       }
     } catch (error) {
-      console.error('Unexpected error during logout:', error.message);
+      console.error("Unexpected error during logout:", error.message);
     }
   };
 
@@ -53,11 +65,13 @@ export const Navbar = () => {
           transition={{ duration: 0.3 }}
           exit={{ opacity: 0 }}
         >
-          <a className="navbar-link flex justify-center" href="/" aria-label="Home">
+          <a
+            className="navbar-link flex justify-center"
+            href="/"
+            aria-label="Home"
+          >
             <div className="flex justify-start items-center grow basis-0 cursor-pointer">
-              <div className="text-white font-['Righteous'] text-4xl">
-                bulb
-              </div>
+              <div className="text-white font-['Righteous'] text-4xl">bulb</div>
             </div>
           </a>
         </motion.div>
@@ -91,8 +105,19 @@ export const Navbar = () => {
             <Menu as="div" className="relative inline-block text-left">
               <div>
                 <Menu.Button className="text-white custom-border-gray hover-primary rounded-xl bg-customDarkBg2 hover:bg-customDarkBg3 p-3 text-md flex focus:outline-none focus-within:outline-none">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+                    />
                   </svg>
                 </Menu.Button>
               </div>
@@ -113,8 +138,10 @@ export const Navbar = () => {
                         {({ active }) => (
                           <a
                             className={classNames(
-                              active ? 'bg-customDarkBg3Hover text-white' : 'text-[#bbb]',
-                              'flex flex-row cursor-pointer gap-2 px-3 py-2 text-sm'
+                              active
+                                ? "bg-customDarkBg3Hover text-white"
+                                : "text-[#bbb]",
+                              "flex flex-row cursor-pointer gap-2 px-3 py-2 text-sm",
                             )}
                             href={href}
                           >
@@ -124,18 +151,23 @@ export const Navbar = () => {
                         )}
                       </Menu.Item>
                     ))}
-                    <hr className='border-[#444] w-5/6 mx-auto my-1'/>
+                    <hr className="border-[#444] w-5/6 mx-auto my-1" />
                     <Menu.Item>
                       {({ active }) => (
                         <button
                           type="submit"
                           className={classNames(
-                            active ? 'bg-customDarkBg3Hover text-white' : 'text-[#bbb]',
-                            'flex flex-row w-full cursor-pointer gap-2 px-3 py-2 text-sm'
+                            active
+                              ? "bg-customDarkBg3Hover text-white"
+                              : "text-[#bbb]",
+                            "flex flex-row w-full cursor-pointer gap-2 px-3 py-2 text-sm",
                           )}
                           onClick={() => logout()}
                         >
-                          <LogoutIcon className="h-4 w-4 my-auto" aria-hidden="true" />
+                          <LogoutIcon
+                            className="h-4 w-4 my-auto"
+                            aria-hidden="true"
+                          />
                           Log out
                         </button>
                       )}

@@ -23,8 +23,8 @@
   @apply text-gray-400 text-base;
 }
 
-::selection{
-  @apply bg-primary-900 ;
+::selection {
+  @apply bg-primary-900;
   color: rgba(255, 255, 255, 0.625);
 }
 
@@ -71,7 +71,7 @@ html {
 }
 
 .navbar-link::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -5px;
   left: 50%;
@@ -83,5 +83,5 @@ html {
 }
 
 .navbar-link:hover::after {
-  @apply border-primary-500
+  @apply border-primary-500;
 }

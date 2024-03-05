@@ -55,14 +55,25 @@ export const Gallery = () => {
               height1: "100%",
             }}
           >
-            <div className="photo-options h-full flex mb-auto gradientback-invert rounded-xl p-4 sm:p-2 md:p-4 lg:p-4 xl:p-4 opacity-0 duration-300" style={{ position: "relative" }}>
+            <div
+              className="photo-options h-full flex mb-auto gradientback-invert rounded-xl p-4 sm:p-2 md:p-4 lg:p-4 xl:p-4 opacity-0 duration-300"
+              style={{ position: "relative" }}
+            >
               <div className="flex w-full justify-start h-max">
                 {/* Add your content for photo options here */}
               </div>
             </div>
-            <div className="photo-user h-full flex mt-auto gradientback rounded-xl p-4 sm:p-2 md:p-4 lg:p-4 xl:p-4 opacity-0 duration-300" style={{ position: "relative" }}>
+            <div
+              className="photo-user h-full flex mt-auto gradientback rounded-xl p-4 sm:p-2 md:p-4 lg:p-4 xl:p-4 opacity-0 duration-300"
+              style={{ position: "relative" }}
+            >
               <div className="flex w-full justify-start h-max">
-                <img src={gallery.image} alt="" width="7.5%" className="rounded-full"/>
+                <img
+                  src={gallery.image}
+                  alt=""
+                  width="7.5%"
+                  className="rounded-full"
+                />
                 <div className="flex flex-col ml-4 my-auto">
                   <div className="custom-content-text-white font-medium">
                     {gallery.user}

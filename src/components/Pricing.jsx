@@ -141,7 +141,7 @@ export const Pricing = () => {
                     </div>
                   </div>
                   <p className="mt-4 mb-6 2xl:mb-10 text-gray-500 leading-loose text-left">
-                    Experience the full power of our  analytic platform
+                    Experience the full power of our analytic platform
                   </p>
                   <ul className="mb-2 2xl:mb-6 text-white">
                     {pricingData.map((text, index) => (
