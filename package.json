@@ -28,7 +28,7 @@
     "lodash.debounce": "^4.0.8",
     "mock-aws-s3": "^4.0.2",
     "mongodb": "^6.3.0",
-    "mysql2": "^3.9.1",
+    "mysql2": "^3.9.8",
     "nock": "^13.5.3",
     "npm-check-updates": "^16.14.15",
     "react-aria-components": "^1.1.1",
